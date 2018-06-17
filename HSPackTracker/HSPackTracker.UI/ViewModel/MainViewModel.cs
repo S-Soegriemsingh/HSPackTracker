@@ -1,6 +1,7 @@
 ﻿using HSPackTracker.Model;
 using HSPackTracker.UI.Data;
 using System.Collections.ObjectModel;
+using System.Threading.Tasks;
 
 namespace HSPackTracker.UI.ViewModel
 {
@@ -26,9 +27,9 @@ namespace HSPackTracker.UI.ViewModel
             _packDataService = packDataService;
         }
 
-        public void Load()
+        public async Task LoadAsync()
         {
-            var packs = _packDataService.GetAll();
+            var packs = await _packDataService.GetAllAsync();
 
             // Clear the list to avoid duplicates if function is called twice.
             Packs.Clear();

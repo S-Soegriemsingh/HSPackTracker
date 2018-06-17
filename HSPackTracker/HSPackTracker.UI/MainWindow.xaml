@@ -8,41 +8,41 @@
         Title="Hearthstone Pack Tracker" Height="450" Width="800" FontSize="20">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200" />
+            <ColumnDefinition Width="300" />
             <ColumnDefinition />
         </Grid.ColumnDefinitions>
         <ListView ItemsSource="{Binding Packs}" 
                   SelectedItem="{Binding SelectedPack}"
                   DisplayMemberPath="SetName"/>
         <Grid Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="400"/>
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
-                <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="Auto" />
                 <RowDefinition />
             </Grid.RowDefinitions>
-            <Label Content="{Binding SelectedPack.SetName}" Margin="10 10 10 0" />
+            <Label Content="{Binding SelectedPack.SetName, FallbackValue='Select a pack'}" Margin="10" />
             
-            <Label Grid.Row="1" Content="Epic Count:" Margin="10 10 10 0" />
-            <Label Grid.Row="2" Content="{Binding SelectedPack.EpicCount, UpdateSourceTrigger=PropertyChanged}" 
-                   Margin="10 0 10 10" />
+            <Label Grid.Row="1" Content="Packs opend for Epic:" Margin="10" />
+            <Label Grid.Row="1" Content="{Binding SelectedPack.EpicCount, UpdateSourceTrigger=PropertyChanged}" 
+                   Grid.Column="1" Margin="10" />
 
-            <Label Grid.Row="3" Content="Epic Percentage:" Margin="10 10 10 0" />
-            <Label Grid.Row="4" Content="{Binding SelectedPack.EpicPercentage, UpdateSourceTrigger=PropertyChanged}" 
-                   Margin="10 0 10 10" />
+            <Label Grid.Row="2" Content="Next pack Epic percentage:" Margin="10" />
+            <Label Grid.Row="2" Content="{Binding SelectedPack.EpicPercentage, UpdateSourceTrigger=PropertyChanged}" 
+                   Grid.Column="1" Margin="10" />
 
-            <Label Grid.Row="5" Content="Legendary Count:" Margin="10 10 10 0" />
-            <Label Grid.Row="6" Content="{Binding SelectedPack.LegendaryCount, UpdateSourceTrigger=PropertyChanged}" 
-                   Margin="10 0 10 10" />
+            <Label Grid.Row="3" Content="Packs opend for Legendary:" Margin="10" />
+            <Label Grid.Row="3" Content="{Binding SelectedPack.LegendaryCount, UpdateSourceTrigger=PropertyChanged}" 
+                   Grid.Column="1" Margin="10" />
 
-            <Label Grid.Row="7" Content="Legendary Percentage:" Margin="10 10 10 0" />
-            <Label Grid.Row="8" Content="{Binding SelectedPack.LegendaryPercentage, UpdateSourceTrigger=PropertyChanged}" 
-                   Margin="10 0 10 10" />
+            <Label Grid.Row="4" Content="Next pack Legendary percentage:" Margin="10" />
+            <Label Grid.Row="4" Content="{Binding SelectedPack.LegendaryPercentage, UpdateSourceTrigger=PropertyChanged}" 
+                   Grid.Column="1" Margin="10" />
         </Grid>
     </Grid>
 </Window>

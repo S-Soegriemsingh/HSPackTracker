@@ -1,18 +1,27 @@
-﻿using HSPackTracker.Model;
+﻿using HSPackTracker.DataAccess;
+using HSPackTracker.Model;
+using System;
 using System.Collections.Generic;
+using System.Data.Entity;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace HSPackTracker.UI.Data
 {
     public class PackDataService : IPackDataService
     {
-        public IEnumerable<Pack> GetAll()
+        private Func<HSPackTrackerDbContext> _contextCreator;
+
+        public PackDataService(Func<HSPackTrackerDbContext> contextCreator)
         {
-            // TODO: Load data from real database
-            yield return new Pack { SetName = "Classic", EpicCount = 5, EpicPercentage = 50, LegendaryCount = 23, LegendaryPercentage = 45 };
-            yield return new Pack { SetName = "Journey to Un'Goro", EpicCount = 8, EpicPercentage = 25, LegendaryCount = 50, LegendaryPercentage = 50 };
-            yield return new Pack { SetName = "Knights of the Frozen Throne", EpicCount = 7, EpicPercentage = 30, LegendaryCount = 39, LegendaryPercentage = 100 };
-            yield return new Pack { SetName = "Kobolds & Catacombs", EpicCount = 1, EpicPercentage = 5, LegendaryCount = 10, LegendaryPercentage = 20 };
-            yield return new Pack { SetName = "The Wichtwood", EpicCount = 9, EpicPercentage = 75, LegendaryCount = 35, LegendaryPercentage = 80 };
+            _contextCreator = contextCreator;
+        }
+        public async Task<List<Pack>> GetAllAsync()
+        {
+            using(var ctx = _contextCreator())
+            {
+                return await ctx.Packs.ToListAsync();
+            }
         }
     }
 }
