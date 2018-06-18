@@ -1,9 +1,11 @@
 ﻿using HSPackTracker.Model;
 using HSPackTracker.UI.Data;
 using HSPackTracker.UI.Event;
+using Prism.Commands;
 using Prism.Events;
 using System;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace HSPackTracker.UI.ViewModel
 {
@@ -11,6 +13,7 @@ namespace HSPackTracker.UI.ViewModel
     {
         private IPackDataService _dataService;
         private IEventAggregator _eventAggregator;
+        public ICommand SaveCommand { get; }
 
         private Pack _pack;
         public Pack Pack
@@ -30,6 +33,19 @@ namespace HSPackTracker.UI.ViewModel
 
             _eventAggregator.GetEvent<OpenPackDetailViewEvent>()
                 .Subscribe(OnOpenPackDetailView);
+
+            SaveCommand = new DelegateCommand(OnSaveCommand, OnCanSaveCommand);
+        }
+
+        private async void OnSaveCommand()
+        {
+            await _dataService.SaveAsync(Pack);
+            OnOpenPackDetailView(Pack.Id);
+        }
+
+        private bool OnCanSaveCommand()
+        {
+            return true;
         }
 
         private async void OnOpenPackDetailView(int packId)
@@ -41,5 +57,7 @@ namespace HSPackTracker.UI.ViewModel
         {
             Pack = await _dataService.GetByIdAsync(packId);
         }
+
+
     }
 }

@@ -17,6 +17,7 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
         <Label Content="{Binding Pack.SetName, FallbackValue='Select a pack'}" Margin="10" />
 
@@ -35,5 +36,10 @@
         <Label Grid.Row="4" Content="Next pack Legendary percentage:" Margin="10" />
         <Label Grid.Row="4" Content="{Binding Pack.LegendaryPercentage, UpdateSourceTrigger=PropertyChanged}" 
                    Grid.Column="1" Margin="10" />
+
+        <StackPanel Grid.Row="6" Orientation="Horizontal">
+            <Button Content="Save" Width="125" Margin="10" 
+                    Command="{Binding SaveCommand}" />
+        </StackPanel>
     </Grid>
 </UserControl>

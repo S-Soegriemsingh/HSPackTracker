@@ -23,5 +23,19 @@ namespace HSPackTracker.UI.Data
                 return await ctx.Packs.AsNoTracking().SingleAsync(p => p.Id == packId);
             }
         }
+
+        public async Task SaveAsync(Pack pack)
+        {
+            using (var ctx = _contextCreator())
+            {
+                ctx.Packs.Attach(pack);
+
+                // Modification on pack
+                pack.EpicCount += 1;
+
+                ctx.Entry(pack).State = EntityState.Modified;
+                await ctx.SaveChangesAsync();
+            }
+        }
     }
 }
