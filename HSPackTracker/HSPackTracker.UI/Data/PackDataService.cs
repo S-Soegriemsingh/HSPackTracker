@@ -16,11 +16,11 @@ namespace HSPackTracker.UI.Data
         {
             _contextCreator = contextCreator;
         }
-        public async Task<List<Pack>> GetAllAsync()
+        public async Task<Pack> GetByIdAsync(int packId)
         {
             using(var ctx = _contextCreator())
             {
-                return await ctx.Packs.ToListAsync();
+                return await ctx.Packs.AsNoTracking().SingleAsync(p => p.Id == packId);
             }
         }
     }
