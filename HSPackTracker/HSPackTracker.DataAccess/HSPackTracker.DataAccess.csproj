@@ -52,6 +52,10 @@
     <Compile Include="Migrations\201806170836309_InitialDatabase.Designer.cs">
       <DependentUpon>201806170836309_InitialDatabase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201806181702525_SwitchToFloat.cs" />
+    <Compile Include="Migrations\201806181702525_SwitchToFloat.Designer.cs">
+      <DependentUpon>201806181702525_SwitchToFloat.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -70,6 +74,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201806170836309_InitialDatabase.resx">
       <DependentUpon>201806170836309_InitialDatabase.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201806181702525_SwitchToFloat.resx">
+      <DependentUpon>201806181702525_SwitchToFloat.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

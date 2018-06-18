@@ -4,9 +4,9 @@
     {
         public int Id { get; set; }
         public string SetName { get; set; }
-        public int EpicCount { get; set; }
-        public int EpicPercentage { get; set; }
-        public int LegendaryCount { get; set; }
-        public int LegendaryPercentage { get; set; }
+        public double EpicCount { get; set; }
+        public double EpicPercentage { get; set; }
+        public double LegendaryCount { get; set; }
+        public double LegendaryPercentage { get; set; }
     }
 }
